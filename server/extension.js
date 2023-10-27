@@ -18,7 +18,7 @@ var extension_hooks = {
       }
     };
     const messagingService = ctx.app.services.get("messaging");
-    await messagingService.send(ctx.sessionId, message);
+    await messagingService.send(exec_ctx.sessionId, message);
   },
   "post_request_execute": async function(ctx, exec_ctx, api, details) {
     ctx.app.debug(">>>>>>>>>>>>>>>>>>post_request_execute<<<<<<<<<<<<<<<<<<", exec_ctx, api, JSON.stringify(details, null, 2));
@@ -36,7 +36,7 @@ var extension_hooks = {
       }
     };
     const messagingService = ctx.app.services.get("messaging");
-    await messagingService.send(ctx.sessionId, message);
+    await messagingService.send(exec_ctx.sessionId, message);
   }
 };
 var extension_default = {

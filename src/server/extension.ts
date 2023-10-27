@@ -19,7 +19,7 @@ const extension_hooks = {
       }
     }
     const messagingService = ctx.app.services.get('messaging')
-    await messagingService.send(ctx.sessionId, message)
+    await messagingService.send(exec_ctx.sessionId, message)
   },
   'post_request_execute': async function(ctx: any, exec_ctx: any, api: string, details: any) {
     ctx.app.debug('>>>>>>>>>>>>>>>>>>post_request_execute<<<<<<<<<<<<<<<<<<', exec_ctx, api, JSON.stringify(details, null, 2))
@@ -37,7 +37,7 @@ const extension_hooks = {
       }
     }
     const messagingService = ctx.app.services.get('messaging')
-    await messagingService.send(ctx.sessionId, message)
+    await messagingService.send(exec_ctx.sessionId, message)
   }
 }
 
