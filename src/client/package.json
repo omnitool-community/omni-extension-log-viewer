@@ -1,5 +1,5 @@
 {
-  "name": "omni-extension-template-client",
+  "name": "omni-extension-logging-client",
   "packageManager": "yarn@3.3.1",
   "scripts": {
     "build": "node ./build.mjs"
