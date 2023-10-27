@@ -6,6 +6,6 @@ sdk.events.on(OmniSDKClientEvents.CUSTOM_EVENT,  (event: any) =>
 {
     if(event.eventId === "log")
     {
-        console.log(JSON.stringify(event.eventArgs.message));
+        console.log("omni-extension-logging", JSON.stringify(event.eventArgs.message));
     }
 })
