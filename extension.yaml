@@ -1,7 +1,7 @@
-title: Template extension
+title: Omni Extension Debugger
 version: 0.0.1
-description: This is a template extension
+description: A debugger extension for Omnitool.ai
 author: Anonymous
-origin: <Your git repository here, ex) git@github.com:your-github-id/your-github-repo.git>
+origin: git@github.com:shinta-liem/omni-extension-logging.git
 client:
-  addToWorkbench: true
+  addToWorkbench: false

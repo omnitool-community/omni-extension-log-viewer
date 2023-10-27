@@ -5,7 +5,8 @@
     "build": "node ./build.mjs"
   },
   "externals": [
-    "omni-sdk"
+    "omni-sdk",
+    "omni-shared"
   ],
   "devDependencies": {
     "esbuild": "^0.18.4",
