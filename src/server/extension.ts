@@ -12,7 +12,7 @@ interface IOmniSSEMessageDebuggerLog extends IMessage {
 
 const extension_hooks = {
   'pre_request_execute': function(ctx: any, api: string, request: any) {
-    ctx.app.debug('pre_request_execute', api, JSON.stringify(request, null, 2))
+    ctx.app.debug('>>>>>>>>>>>>>>>>>>pre_request_execute<<<<<<<<<<<<<<<<<<', api, JSON.stringify(request, null, 2))
   }
 }
 
