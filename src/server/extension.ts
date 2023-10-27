@@ -17,7 +17,7 @@ const extension_hooks = {
 }
 
 export default {
-  hooks: extension_hooks,
+  extensionHooks: extension_hooks,
   init: (ctx: any) => {
     ctx.app.info('Omni Debugger Extension loaded')
   }

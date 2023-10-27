@@ -5,7 +5,7 @@ var extension_hooks = {
   }
 };
 var extension_default = {
-  hooks: extension_hooks,
+  extensionHooks: extension_hooks,
   init: (ctx) => {
     ctx.app.info("Omni Debugger Extension loaded");
   }
