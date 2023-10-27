@@ -1,7 +1,10 @@
 //import './css/bootstrap-icons_font_bootstrap-icons.css'
-import { OmniSDKClient, OmniSDKClientEvents } from 'omni-sdk';
+import { OmniSDKClient, OmniSDKClientEvents, OmniSDKHostMessages } from 'omni-sdk';
 
-const sdk = new OmniSDKClient("omni-extension-logging").init();
+const sdk = new OmniSDKClient("omni-extension-logging").init({
+    subscriptions: [OmniSDKHostMessages.CUSTOM_EVENT]
+});
+
 sdk.events.on(OmniSDKClientEvents.CUSTOM_EVENT,  (event: any) =>
 {
     if(event.eventId === "log")
