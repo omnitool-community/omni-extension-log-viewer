@@ -4,4 +4,4 @@ description: A debugger extension for Omnitool.ai
 author: Anonymous
 origin: git@github.com:shinta-liem/omni-extension-logging.git
 client:
-  addToWorkbench: false
+  addToWorkbench: true
