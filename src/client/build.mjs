@@ -10,7 +10,6 @@ await esbuild.build({
     format: 'esm',
     color: true,
     outdir: '../../public/',
-    external: ['omni-sdk'],
     plugins: [sassPlugin({
         type: 'css',
     })],

@@ -1,8 +1,44 @@
 <html>
   <head>
-    <link href="render.css" rel="stylesheet">
+    <style>
+      .debug-container {
+          border: 1px solid #ccc;
+          background-color: #f5f5f5;
+          padding: 10px;
+          max-height: 300px;
+          overflow-y: auto;
+      }
+      .debug-content .message {
+          padding: 5px;
+          font-family: 'Consolas', monospace;
+      }
+      .timestamp {
+          color: #888;
+          margin-right: 10px;
+      }
+      .error {
+          color: red;
+      }
+      .info {
+          color: blue;
+      }
+      .clear-btn {
+          margin-top: 10px;
+      }
+    </style>
   </head>
   <body>
     <script src="./main.js" type="module" defer></script>
+    <div class="debug-container" x-data="extLogs">
+      <h3>Debugging Info</h3>
+      <button class="clear-btn">Clear</button>
+      <div class="debug-content">
+        <template x-for="log in logs">
+          <div class="message" :class="log.type"><span class="timestamp" x-text="log.timestamp"></span><span x-text="log.message"></span></div>
+        <template>
+        <!-- <div class="message info"><span class="timestamp">[12:32:22]</span> Info: User 'admin' logged in.</div> -->
+          <!-- More messages here -->
+      </div>
+  </div>
   </body>
 </html>

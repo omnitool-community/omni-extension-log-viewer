@@ -1,6 +1,7 @@
 // extension.ts
 import { OmniSSEMessages } from "omni-shared";
 var EXTENSION_ID = "omni-extension-logging";
+var status = "closed";
 var extension_hooks = {
   "pre_request_execute": async function(ctx, exec_ctx, api, details) {
     if (exec_ctx.sessionId) {
@@ -10,15 +11,24 @@ var extension_hooks = {
           extensionId: EXTENSION_ID,
           eventId: "log",
           eventArgs: {
-            message: `Executing ${api} with details: ${JSON.stringify(details, null, 2)} ${JSON.stringify(exec_ctx, null, 2)}`,
-            options: {
-              type: "info"
-            }
+            timestamp: (/* @__PURE__ */ new Date()).getTime(),
+            type: "info",
+            message: `Executing ${api} with details: ${JSON.stringify(details, null, 2)}`
           }
         }
       };
       ctx.app.debug(">>>>>>>>>>>>>>>>>>pre_request_execute<<<<<<<<<<<<<<<<<<", exec_ctx.sessionId, JSON.stringify(message, null, 2));
       const messagingService = ctx.app.services.get("messaging");
+      if (status === "closed") {
+        status = "open";
+        await messagingService.send(exec_ctx.sessionId, {
+          type: OmniSSEMessages.SHOW_EXTENSION,
+          body: {
+            extensionId: EXTENSION_ID,
+            page: "index.html"
+          }
+        });
+      }
       await messagingService.send(exec_ctx.sessionId, message);
     }
   },
@@ -30,15 +40,24 @@ var extension_hooks = {
           extensionId: EXTENSION_ID,
           eventId: "log",
           eventArgs: {
-            message: `Executed ${api} with details: ${JSON.stringify(details, null, 2)} ${JSON.stringify(exec_ctx, null, 2)}`,
-            options: {
-              type: "info"
-            }
+            timestamp: (/* @__PURE__ */ new Date()).getTime(),
+            type: "info",
+            message: `Executed ${api} with details: ${JSON.stringify(details, null, 2)}`
           }
         }
       };
       ctx.app.debug(">>>>>>>>>>>>>>>>>>post_request_execute<<<<<<<<<<<<<<<<<<", exec_ctx.sessionId, JSON.stringify(message, null, 2));
       const messagingService = ctx.app.services.get("messaging");
+      if (status === "closed") {
+        status = "open";
+        await messagingService.send(exec_ctx.sessionId, {
+          type: OmniSSEMessages.SHOW_EXTENSION,
+          body: {
+            extensionId: EXTENSION_ID,
+            page: "index.html"
+          }
+        });
+      }
       await messagingService.send(exec_ctx.sessionId, message);
     }
   }
