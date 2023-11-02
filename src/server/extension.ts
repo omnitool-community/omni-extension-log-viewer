@@ -16,6 +16,7 @@ const extension_hooks = {
             timestamp: new Date().getTime(),
             type: 'info',
             message: `Executing ${api}`,
+            details,
           }
         }
       }
@@ -44,6 +45,7 @@ const extension_hooks = {
             timestamp: new Date().getTime(),
             type: 'info',
             message: `Received result from ${api}`,
+            details,
           }
         }
       }

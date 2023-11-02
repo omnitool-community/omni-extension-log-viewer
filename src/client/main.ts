@@ -17,14 +17,12 @@ document.addEventListener('alpine:init', async () => {
     Alpine.data('extLogs', () => ({
         logs: [],
         init() {
-            console.log("initializing collection")
             sdk.events.on(OmniSDKClientEvents.CUSTOM_EVENT,  (event: any) =>
             {
                 if(event.eventId === "log")
                 {
                     console.log("omni-extension-logging", JSON.stringify(event.eventArgs));
-                    this.logs.push({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message });
-                    console.log("Logs: "+this.logs.length)
+                    this.logs.push({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message, details: event.eventArgs.details });
                 }
             })
         }

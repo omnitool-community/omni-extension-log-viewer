@@ -13,11 +13,11 @@ var extension_hooks = {
           eventArgs: {
             timestamp: (/* @__PURE__ */ new Date()).getTime(),
             type: "info",
-            message: `Executing ${api} with details: ${JSON.stringify(details, null, 2)}`
+            message: `Executing ${api}`,
+            details
           }
         }
       };
-      ctx.app.debug(">>>>>>>>>>>>>>>>>>pre_request_execute<<<<<<<<<<<<<<<<<<", exec_ctx.sessionId, JSON.stringify(message, null, 2));
       const messagingService = ctx.app.services.get("messaging");
       if (status === "closed") {
         status = "open";
@@ -42,11 +42,11 @@ var extension_hooks = {
           eventArgs: {
             timestamp: (/* @__PURE__ */ new Date()).getTime(),
             type: "info",
-            message: `Executed ${api} with details: ${JSON.stringify(details, null, 2)}`
+            message: `Received result from ${api}`,
+            details
           }
         }
       };
-      ctx.app.debug(">>>>>>>>>>>>>>>>>>post_request_execute<<<<<<<<<<<<<<<<<<", exec_ctx.sessionId, JSON.stringify(message, null, 2));
       const messagingService = ctx.app.services.get("messaging");
       if (status === "closed") {
         status = "open";
