@@ -52,7 +52,10 @@
       .th {
         align-content: left;
       }
-    </style>
+      .toggle {
+        user-select: none;
+      }
+      </style>
   </head>
   <body>
     <script src="./main.js" type="module" defer></script>
@@ -74,7 +77,7 @@
               <tr :class="log.type">
                 <td style="width: 10%;"><span class="timestamp" x-text="log.timestamp"></span></td>
                 <td style="width: 40%"><span x-text="log.message"></span></td>
-                <td style="width: 50%;"><span x-text="log.details"></span></td>
+                <td style="width: 50%;"><span x-json="log.details"></span></td>
               </tr>
             <template>
           </tbody>
