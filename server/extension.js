@@ -1,6 +1,6 @@
 // extension.ts
 import { OmniSSEMessages } from "omni-shared";
-var EXTENSION_ID = "omni-extension-logging";
+var EXTENSION_ID = "omni-extension-log-viewer";
 var status = "closed";
 var extension_hooks = {
   "pre_request_execute": async function(ctx, exec_ctx, api, details) {

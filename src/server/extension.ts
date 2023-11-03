@@ -1,6 +1,6 @@
 import { OmniSSEMessages } from 'omni-shared'
 
-const EXTENSION_ID = 'omni-extension-logging'
+const EXTENSION_ID = 'omni-extension-log-viewer'
 
 let status = 'closed'
 

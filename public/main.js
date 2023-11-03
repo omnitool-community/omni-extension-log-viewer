@@ -7803,7 +7803,7 @@ var module_default = src_default;
 
 // main.ts
 var import_json_formatter_js = __toESM(require_json_formatter_umd());
-var sdk = new ot("omni-extension-logging").init({
+var sdk = new ot("omni-extension-log-viewer").init({
   subscriptions: [er.CUSTOM_EVENT]
 });
 window.Alpine = module_default;
@@ -7818,7 +7818,6 @@ document.addEventListener("alpine:init", async () => {
     init() {
       sdk.events.on(Xr.CUSTOM_EVENT, (event) => {
         if (event.eventId === "log") {
-          console.log("omni-extension-logging", JSON.stringify(event.eventArgs));
           this.logs.push({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message, details: event.eventArgs.details });
         }
       });

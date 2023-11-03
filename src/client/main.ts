@@ -3,7 +3,7 @@ import { OmniSDKClient, OmniSDKClientEvents, OmniSDKHostMessages } from 'omni-sd
 import Alpine from 'alpinejs';
 import JSONFormatter from 'json-formatter-js'
 
-const sdk = new OmniSDKClient("omni-extension-logging").init({
+const sdk = new OmniSDKClient("omni-extension-log-viewer").init({
     subscriptions: [OmniSDKHostMessages.CUSTOM_EVENT]
 });
 
@@ -28,7 +28,6 @@ document.addEventListener('alpine:init', async () => {
             {
                 if(event.eventId === "log")
                 {
-                    console.log("omni-extension-logging", JSON.stringify(event.eventArgs));
                     this.logs.push({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message, details: event.eventArgs.details });
                 }
             })
