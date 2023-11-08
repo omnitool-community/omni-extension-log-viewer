@@ -2,7 +2,11 @@ import { OmniSSEMessages } from 'omni-shared'
 
 const EXTENSION_ID = 'omni-extension-log-viewer'
 
-let status = 'closed'
+enum LogType {
+  INFO = 'info',
+  WARN = 'warn',
+  ERROR = 'error',
+}
 
 const extension_hooks = {
   'pre_request_execute': async function(ctx: any, exec_ctx: any, api: string, details: any) {
@@ -14,28 +18,19 @@ const extension_hooks = {
           eventId: 'log',
           eventArgs: {
             timestamp: new Date().getTime(),
-            type: 'info',
+            type: LogType.INFO,
             message: `Executing ${api}`,
             details,
           }
         }
       }
       const messagingService = ctx.app.services.get('messaging')
-      if (status === 'closed') {
-        status = 'open'
-        await messagingService.send(exec_ctx.sessionId, {
-          type: OmniSSEMessages.SHOW_EXTENSION,
-          body: {
-            extensionId: EXTENSION_ID,
-            page: 'index.html'
-          }
-        })
-      }
       await messagingService.send(exec_ctx.sessionId, message)
     }
   },
   'post_request_execute': async function(ctx: any, exec_ctx: any, api: string, details: any) {
     if (exec_ctx.sessionId) {
+      const logType = details.result?.error ? LogType.ERROR : LogType.INFO
       const message = {
         type: OmniSSEMessages.CUSTOM_EXTENSION_EVENT,
         body: {
@@ -43,23 +38,22 @@ const extension_hooks = {
           eventId: 'log',
           eventArgs: {
             timestamp: new Date().getTime(),
-            type: 'info',
+            type: logType,
             message: `Received result from ${api}`,
             details,
           }
         }
       }
       const messagingService = ctx.app.services.get('messaging')
-      if (status === 'closed') {
-        status = 'open'
-        await messagingService.send(exec_ctx.sessionId, {
-          type: OmniSSEMessages.SHOW_EXTENSION,
-          body: {
-            extensionId: EXTENSION_ID,
-            page: 'index.html'
-          }
-        })
-      }
+      // if (logType === LogType.ERROR) {
+      //   await messagingService.send(exec_ctx.sessionId, {
+      //     type: OmniSSEMessages.SHOW_EXTENSION,
+      //     body: {
+      //       extensionId: EXTENSION_ID,
+      //       page: 'index.html'
+      //     }
+      //   })
+      // }
       await messagingService.send(exec_ctx.sessionId, message)
     }
   }
@@ -67,7 +61,4 @@ const extension_hooks = {
 
 export default {
   extensionHooks: extension_hooks,
-  init: (ctx: any) => {
-    ctx.app.info('Omni Debugger Extension loaded')
-  }
 }
