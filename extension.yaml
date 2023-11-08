@@ -2,6 +2,6 @@ title: Omni Log Viewer
 version: 0.0.1
 description: A debugger extension for Omnitool.ai
 author: Anonymous
-origin: git@github.com:omnitool-community/omni-extension-log-viewer.git
+origin: https://github.com/omnitool-community/omni-extension-log-viewer.git
 client:
   addToWorkbench: true
