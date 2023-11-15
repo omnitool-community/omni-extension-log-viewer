@@ -5,3 +5,4 @@ author: Anonymous
 origin: https://github.com/omnitool-community/omni-extension-log-viewer.git
 client:
   addToWorkbench: true
+  addToSidebar: true
