@@ -5,15 +5,17 @@
       body {
         margin: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: white;
+        background-color: #ddd;
         color: rgb(56, 56, 56);
       }
       .debug-container {
           width: 100%;
+          border: 1px solid #222;
       }
       .message {
           padding: 5px;
           font-family: 'Consolas', monospace;
+          font-size: 11px;
       }
       .timestamp {
           color: #888;
@@ -74,10 +76,10 @@
         <table class="debug-container">
           <tbody class="message">
             <template x-for="log in logs">
-              <tr :class="log.type">
-                <td style="width: 10%;"><span class="timestamp" x-text="log.timestamp"></span></td>
-                <td style="width: 40%"><span x-text="log.message"></span></td>
-                <td style="width: 50%;"><span x-json="log.details"></span></td>
+              <tr :class="log.type" style="border: 1px solid #444;">
+                <td style="width: 10%; vertical-align: top;"><span class="timestamp" x-text="log.timestamp"></span></td>
+                <td style="width: 40%; vertical-align: top"><span x-text="log.message"></span></td>
+                <td style="width: 50%; vertical-align: top;"><span x-json="log.details"></span></td>
               </tr>
             <template>
           </tbody>
