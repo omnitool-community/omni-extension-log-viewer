@@ -5,13 +5,10 @@ author: Anonymous
 origin: https://github.com/omnitool-community/omni-extension-log-viewer.git
 client:
   addToWorkbench: true
-<<<<<<< HEAD
   singleton: true
   winbox:
     width: 1200
     height: 200
     minwidth: 1000
     minheight: 200
-=======
   addToSidebar: true
->>>>>>> f8b14063df367c3b24f3f2141e72a806a1ecbd89
