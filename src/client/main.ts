@@ -17,18 +17,14 @@ window.Alpine = Alpine
 document.addEventListener('alpine:init', async () => {
     Alpine.data('extLogs', () => ({
         logs: [],
-        isOpen(element) {
-            // Check if the next sibling's display property is not 'none'
-            return element.nextElementSibling.style.display !== 'none';
-        },
-        toggle(event) {
-        },
+        showBanner: true,
         init() {
             sdk.events.on(OmniSDKClientEvents.CUSTOM_EVENT,  (event: any) =>
             {
                 if(event.eventId === "log")
                 {
-                    this.logs.push({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message, details: event.eventArgs.details });
+                    this.showBanner = false;
+                    this.logs.unshift({ type: event.eventArgs.type, timestamp: new Date(event.eventArgs.timestamp).toISOString(), message: event.eventArgs.message, details: event.eventArgs.details });
                 }
             })
         }

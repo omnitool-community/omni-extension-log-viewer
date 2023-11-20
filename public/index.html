@@ -51,6 +51,19 @@
         justify-content: flex-end;
         margin-bottom: 10px; /* Adjust the space between button and table */
       }
+      /* Style for the banner */
+      .banner {
+        background-color: rgb(254, 249, 195);
+        color: black;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        font-size: 11px;
+      }
       .th {
         align-content: left;
       }
@@ -71,6 +84,9 @@
           </svg>
           Clear
         </button>
+      </div>
+      <div class="banner" x-show="showBanner">
+        Logs will be displayed when a workflow is executed.
       </div>
       <div>
         <table class="debug-container">
