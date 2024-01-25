@@ -31,11 +31,17 @@ document.addEventListener('alpine:init', async () => {
     }));
 });
 
-Alpine.directive('json', (el, { expression }, { evaluate }) => {
-    const jsonData = evaluate(expression);
-    console.log(jsonData)
-    const formatter = new JSONFormatter(jsonData);
-    el.appendChild(formatter.render());
+Alpine.directive('json', (el, { expression }, { evaluateLater, effect }) => {
+    const renderLog = evaluateLater(expression);
+
+    effect(() => {
+        renderLog((log: any) => {
+            console.log(JSON.stringify(log));
+            el.innerHTML = ''; // Clear previous content
+            const formatter = new JSONFormatter(log);
+            el.appendChild(formatter.render());
+        })
+    })
 });
 
 
